@@ -15,26 +15,26 @@ public class Artist {
 	// @getters
 	/** gets the artist ID
 		@return		the integer ID for this artist */
-	public int getID() {
+	public int getArtistID() {
 		return artistID;
 	}
 	
 	/**	gets the artists name
 		@return		the artists's name as a String */
-	public String getName() {
+	public String getArtistName() {
 		return artistName;
 	}
 	
 	// @setters
 	/** set the artist ID
 		@param	ID	integer to set as the artist ID */
-	public void setID(int id) {
+	public void setArtistID(int id) {
 		artistID = id;
 	}
 	
 	/** set the artist name
 		@param	name	the string to set to artistName */
-	public void setName(String name) {
+	public void setArtistName(String name) {
 		artistName = name;
 	}
 	
