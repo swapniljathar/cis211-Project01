@@ -8,48 +8,69 @@ public class Art {
 	private int artID;
 	private String title;
 	private int artistID;
+	private String artistName;
 	private int value;
 	
-	Art(int pArtID, String pTitle, int pArtistID, int pValue) {
+	public Art(int pArtID, String pTitle, int pArtistID, int pValue) {
 		artID = pArtID;
 		title = pTitle;
 		artistID = pArtistID;
 		value = pValue;
 	}
 	
-	private int getArtID() {
+	public Art(int pArtID, String pTitle, int pArtistID, String pArtistName, int pValue) {
+			artID = pArtID;
+			title = pTitle;
+			artistID = pArtistID;
+			artistName = pArtistName;
+			value = pValue;
+		}
+	
+	public int getArtID() {
 		return artID;
 	}
 	
-	private String getTitle() {
+	public String getTitle() {
 		return title;
 	}
 	
-	private int getArtistID() {
+	public int getArtistID() {
 		return artistID;
 	}
 	
-	private int getValue() {
+	public String getArtistName() {
+		return artistName;
+	}
+	
+	public int getValue() {
 		return value;
 	}
 	
-	private void setArtID(int pArtID) {
+	public void setArtID(int pArtID) {
 		artID = pArtID;
 	}
 	
-	private void setTitle(String pTitle) {
+	public void setTitle(String pTitle) {
 		title = pTitle;
 	}
 	
-	private void setArtistID(int pArtistID) {
+	public void setArtistID(int pArtistID) {
 		artistID = pArtistID;
 	}
 	
-	private void setValue(int pValue) {
+	public void setArtistName(String pArtistName) {
+		artistName = pArtistName;
+	}
+	
+	public void setValue(int pValue) {
 		value = pValue;
 	} 
 	
 	public String toString() {
-		return artID + "	" + title + "	" + artistID + "	" + value;
+		String result = artID + "	" + title + "	" + artistID;
+		if (!artistName.equals("")) {
+			result = result + "	" + artistName; 
+		}
+		return result + "	" + value;
 	}
 }
