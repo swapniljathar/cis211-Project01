@@ -13,6 +13,7 @@ public class Art {
 	
 	private boolean artistNameFlag = false;
 	
+	//@constructors
 	public Art(int pArtID, String pTitle, int pArtistID, int pValue) {
 		artID = pArtID;
 		title = pTitle;
@@ -20,16 +21,18 @@ public class Art {
 		value = pValue;
 	}
 	
+	/* If Art is constructed with this signiture, set the artistName flag */
 	public Art(int pArtID, String pTitle, int pArtistID, String pArtistName, int pValue) {
-			artID = pArtID;
-			title = pTitle;
-			artistID = pArtistID;
-			artistName = pArtistName;
-			value = pValue;
-			
-			artistNameFlag = true;
-		}
+		artID = pArtID;
+		title = pTitle;
+		artistID = pArtistID;
+		artistName = pArtistName;
+		value = pValue;
+		
+		artistNameFlag = true;
+	}
 	
+	//@getters
 	public int getArtID() {
 		return artID;
 	}
@@ -50,6 +53,7 @@ public class Art {
 		return value;
 	}
 	
+	//@setters
 	public void setArtID(int pArtID) {
 		artID = pArtID;
 	}
@@ -62,6 +66,7 @@ public class Art {
 		artistID = pArtistID;
 	}
 	
+	/* When artistName is set, also set the artistNameFlag to true */
 	public void setArtistName(String pArtistName) {
 		artistName = pArtistName;
 		artistNameFlag = true;
@@ -71,6 +76,9 @@ public class Art {
 		value = pValue;
 	} 
 	
+	/* return the Art object as a formatted string 
+		return		formatted string based on the existance of
+					artistName. */
 	public String toString() {
 		String result = artID + "	" + title + "	" + artistID;
 		if (artistNameFlag && !artistName.equals("")) {
