@@ -11,6 +11,8 @@ public class Art {
 	private String artistName;
 	private int value;
 	
+	private boolean artistNameFlag = false;
+	
 	public Art(int pArtID, String pTitle, int pArtistID, int pValue) {
 		artID = pArtID;
 		title = pTitle;
@@ -24,6 +26,8 @@ public class Art {
 			artistID = pArtistID;
 			artistName = pArtistName;
 			value = pValue;
+			
+			artistNameFlag = true;
 		}
 	
 	public int getArtID() {
@@ -60,6 +64,7 @@ public class Art {
 	
 	public void setArtistName(String pArtistName) {
 		artistName = pArtistName;
+		artistNameFlag = true;
 	}
 	
 	public void setValue(int pValue) {
@@ -68,7 +73,7 @@ public class Art {
 	
 	public String toString() {
 		String result = artID + "	" + title + "	" + artistID;
-		if (!artistName.equals("")) {
+		if (artistNameFlag && !artistName.equals("")) {
 			result = result + "	" + artistName; 
 		}
 		return result + "	" + value;

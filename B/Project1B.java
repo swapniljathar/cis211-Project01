@@ -1,24 +1,17 @@
 /** 
 @author Vincent A Masiello II
-Project 01 - Bags1 part B */
+Project 01 - Bags1 part B 
+Project1B.java
+*/
 
 import java.io.*;
-import java.nio.file.*;
 import java.util.*; //Hashtable
 
-
-/* TODO:
-	test artist name append and file output.
-	then clean it up, you nasty. 
-	change error messages to Exceptions
-	combine file reading->returning List portion and abstract out Arts/Artist code
-*/
 public class Project1B {
 	public static void main (String[] args) throws IOException {
 		
 		String PATH_TO_ARTIST_INPUT_FILE = "p1artists.txt";
 		String PATH_TO_ARTS_INPUT_FILE = "p1arts.txt";
-		String PATH_TO_ARTIST_OUTPUT_FILE = "p1artists_out.txt";
 		String PATH_TO_ARTS_OUTPUT_FILE = "p1arts_out.txt";
 		
 		//read in both artists and arts from file
@@ -55,64 +48,42 @@ public class Project1B {
 			} else {
 				art.setArtistName(name); //else set name
 			}
-			
 			writeList.add(art.toString());
 		}
 		
 		//write arts w/ artist name to output file
-		Path path = Paths.get(PATH_TO_ARTS_OUTPUT_FILE);
-		Files.write(path, writeList);
+		FileHandler.writeData(PATH_TO_ARTS_OUTPUT_FILE, writeList);
 		
 	} //end main
 	
 	private static BagInterface<Artist> readArtistsFromFile(String path) throws IOException {
-		Path p = Paths.get(path);
-		
 		BagInterface<Artist> result = new ArrayBag<Artist>();
+		List<String> lines = FileHandler.readData(path);
 		
-		if (Files.exists(p) && Files.isReadable(p)) {
-			
-			List<String> lines = Files.readAllLines(p);
-			for (Iterator<String> it = lines.iterator(); it.hasNext(); ) {
-				//ignore empty lines
-				if (!it.next().equals("")) {
-					String line = it.next();
-					String[] props = line.split("\\t");
-					Artist anArtist = new Artist(Integer.parseInt(props[0]), props[1]);
-					result.add(anArtist);
-				} else {
-					System.out.println("detected empty line in file");
-				}
+		for (Iterator<String> it = lines.iterator(); it.hasNext(); ) {
+			//ignore empty lines
+			if (!it.next().equals("")) {
+				String line = it.next();
+				String[] props = line.split("\\t");
+				Artist anArtist = new Artist(Integer.parseInt(props[0]), props[1]);
+				result.add(anArtist);
 			}
-		} else {
-			System.out.println("Error: " + p +" file does not exist or is not readable!");
 		}
 		return result;
 	}
 	
 	private static BagInterface<Art> readArtsFromFile(String path) throws IOException {
-		Path p = Paths.get(path);
-		
 		BagInterface<Art> result = new ArrayBag<Art>();
-		
-		if (Files.exists(p) && Files.isReadable(p)) {
-			
-			List<String> lines = Files.readAllLines(p);
-			
-			//ignore empty lines
-			for (Iterator<String> it = lines.iterator(); it.hasNext(); ) {
-				if (!it.next().equals("")) {
-					String line = it.next();
-					String[] props = line.split("\\t");
-					Art anArt = new Art(Integer.parseInt(props[0]), props[1], Integer.parseInt(props[2]), Integer.parseInt(props[3]));
-					
-					result.add(anArt);
-				} else {
-					System.out.println("detected empty line");
-				}
+		List<String> lines = FileHandler.readData(path);
+		//ignore empty lines
+		for (Iterator<String> it = lines.iterator(); it.hasNext(); ) {
+			if (!it.next().equals("")) {
+				String line = it.next();
+				String[] props = line.split("\\t");
+				Art anArt = new Art(Integer.parseInt(props[0]), props[1], Integer.parseInt(props[2]), Integer.parseInt(props[3]));
+				
+				result.add(anArt);
 			}
-		} else {
-			System.out.println("Error: " + p + " file does not exist or is not readable!");
 		}
 		return result;
 	}

@@ -1,6 +1,8 @@
 /** 
 @author Vincent A Masiello II
-Project 01 - Bags1 part B */
+Project 01 - Bags1 part B 
+Artist.java
+*/
 
 public class Artist {
 	private int artistID;
